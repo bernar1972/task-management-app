@@ -11,7 +11,7 @@ export class ConfigService {
   getApiUrl(): string {
     // Si estamos en el servidor (SSR), usar URL de producción por defecto
     if (!isPlatformBrowser(this.platformId)) {
-      return 'https://tu-api-backend.railway.app/api/tasks';
+      return 'https://task-management-api.onrender.com/api/tasks';
     }
     
     // En el navegador, verificar si es desarrollo
@@ -19,8 +19,8 @@ export class ConfigService {
       return 'http://localhost:5226/api/tasks';
     }
     
-    // En producción - actualizar con tu URL de Railway
-    return 'https://tu-api-backend.railway.app/api/tasks';
+    // En producción - Render URL (actualizar con tu URL real después del deploy)
+    return 'https://task-management-api.onrender.com/api/tasks';
   }
 
   private isLocalhost(): boolean {

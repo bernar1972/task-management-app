@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: task-management-api
+    runtime: docker
+    rootDir: backend/TaskAPI
+    plan: free
+    buildCommand: docker build -t taskapi .
+    startCommand: docker run -p $PORT:$PORT taskapi
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://0.0.0.0:$PORT

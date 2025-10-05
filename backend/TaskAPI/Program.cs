@@ -18,7 +18,11 @@ builder.Services.AddCors(options =>
         {
             var allowedOrigins = builder.Environment.IsDevelopment() 
                 ? new[] { "http://localhost:4200" }
-                : new[] { "https://tu-app-frontend.netlify.app", "http://localhost:4200" };
+                : new[] { 
+                    "https://task-manager-app.pages.dev", // Cloudflare Pages
+                    "https://task-manager-app.netlify.app", // Netlify  
+                    "http://localhost:4200" // Development
+                };
             
             policy.WithOrigins(allowedOrigins)
                   .AllowAnyHeader()

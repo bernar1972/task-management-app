@@ -15,7 +15,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/out .
 
-# Expose port (Railway will provide PORT environment variable)
-EXPOSE 5000
+# Render uses PORT environment variable
+EXPOSE $PORT
 
 ENTRYPOINT ["dotnet", "TaskAPI.dll"]
