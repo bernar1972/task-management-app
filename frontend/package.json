@@ -7,6 +7,7 @@
     "build": "ng build",
     "build:netlify": "ng build --configuration=netlify",
     "build:static": "ng build --output-mode=static",
+    "build:prod": "ng build --configuration=production --output-mode=static",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:task-app": "node dist/task-app/server/server.mjs"
