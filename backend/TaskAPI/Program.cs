@@ -19,9 +19,9 @@ builder.Services.AddCors(options =>
             var allowedOrigins = builder.Environment.IsDevelopment() 
                 ? new[] { "http://localhost:4200" }
                 : new[] { 
+                    "https://radiant-stroopwafel-a5cce3.netlify.app", // Your Netlify domain
                     "https://task-manager-app.pages.dev", // Cloudflare Pages
                     "https://task-manager-app.netlify.app", // Netlify custom domain 
-                    "https://*.netlify.app", // Any Netlify subdomain
                     "http://localhost:4200" // Development
                 };
             
