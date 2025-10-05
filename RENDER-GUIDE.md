@@ -1,12 +1,13 @@
 # 🎯 Render Deployment Guide - .NET Core Backend
 
-## ✅ ¿Por qué Render es mejor para .NET Core?
+## ✅ ¿Por qué Render es mejor para .NET 8?
 
-- ✅ **Auto-detección** de proyectos .NET Core
+- ✅ **Auto-detección** de proyectos .NET 8 LTS
 - ✅ **Menos configuración** requerida
 - ✅ **Plan gratuito** generoso (750 horas/mes)
 - ✅ **Builds automáticos** desde GitHub
 - ✅ **SSL gratuito** y CDN incluido
+- ✅ **Compatibilidad completa** con .NET 8 LTS
 
 ## 🚀 Pasos para deployar Backend en Render:
 

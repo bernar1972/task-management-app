@@ -1,4 +1,4 @@
-# Use the official .NET SDK image for building
+# Use the official .NET 8 SDK image for building
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /app
 
@@ -10,7 +10,7 @@ RUN dotnet restore
 COPY . ./
 RUN dotnet publish -c Release -o out
 
-# Use the official ASP.NET Core runtime image
+# Use the official .NET 8 ASP.NET Core runtime image
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/out .
