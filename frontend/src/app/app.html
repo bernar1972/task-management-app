@@ -1,0 +1,140 @@
+<div class="container">
+  <header>
+    <h1>{{ title }}</h1>
+  </header>
+
+  <div class="error-message" *ngIf="error">
+    {{ error }}
+  </div>
+
+  <div class="loading" *ngIf="loading">
+    Cargando...
+  </div>
+
+  <!-- Formulario para crear nueva tarea -->
+  <section class="task-form">
+    <h2>Nueva Tarea</h2>
+    <form (ngSubmit)="createTask()" #taskForm="ngForm">
+      <div class="form-group">
+        <label for="title">Título:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          [(ngModel)]="newTask.title"
+          required
+          placeholder="Título de la tarea"
+        />
+      </div>
+      <div class="form-group">
+        <label for="description">Descripción:</label>
+        <textarea
+          id="description"
+          name="description"
+          [(ngModel)]="newTask.description"
+          placeholder="Descripción opcional"
+          rows="3"
+        ></textarea>
+      </div>
+      <button type="submit" [disabled]="loading || !taskForm.valid">
+        Crear Tarea
+      </button>
+    </form>
+  </section>
+
+  <!-- Lista de tareas -->
+  <section class="task-list">
+    <h2>Mis Tareas ({{ tasks.length }})</h2>
+    
+    <div *ngIf="tasks.length === 0 && !loading" class="no-tasks">
+      No hay tareas. ¡Crea tu primera tarea!
+    </div>
+
+    <div class="task-item" *ngFor="let task of tasks" [class.completed]="task.isCompleted">
+      <div *ngIf="editingTask?.id !== task.id" class="task-view">
+        <div class="task-content">
+          <h3 [class.completed]="task.isCompleted">{{ task.title }}</h3>
+          <p *ngIf="task.description" [class.completed]="task.isCompleted">
+            {{ task.description }}
+          </p>
+          <small class="task-date">
+            Creada: {{ task.createdAt | date:'medium' }}
+            <span *ngIf="task.completedAt">
+              - Completada: {{ task.completedAt | date:'medium' }}
+            </span>
+          </small>
+        </div>
+        <div class="task-actions">
+          <button 
+            type="button" 
+            class="btn-toggle"
+            [class.completed]="task.isCompleted"
+            (click)="toggleComplete(task)"
+            [disabled]="loading"
+          >
+            {{ task.isCompleted ? '✓ Completada' : 'Marcar como completada' }}
+          </button>
+          <button 
+            type="button" 
+            class="btn-edit"
+            (click)="startEdit(task)"
+            [disabled]="loading"
+          >
+            Editar
+          </button>
+          <button 
+            type="button" 
+            class="btn-delete"
+            (click)="deleteTask(task.id)"
+            [disabled]="loading"
+          >
+            Eliminar
+          </button>
+        </div>
+      </div>
+
+      <!-- Formulario de edición -->
+      <div *ngIf="editingTask?.id === task.id" class="task-edit">
+        <form (ngSubmit)="updateTask()" #editForm="ngForm">
+          <div class="form-group">
+            <label for="editTitle">Título:</label>
+            <input
+              type="text"
+              id="editTitle"
+              name="editTitle"
+              [(ngModel)]="editingTask!.title"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="editDescription">Descripción:</label>
+            <textarea
+              id="editDescription"
+              name="editDescription"
+              [(ngModel)]="editingTask!.description"
+              rows="2"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <label>
+              <input
+                type="checkbox"
+                [(ngModel)]="editingTask!.isCompleted"
+                name="editCompleted"
+              />
+              Tarea completada
+            </label>
+          </div>
+          <div class="edit-actions">
+            <button type="submit" [disabled]="loading || !editForm.valid">
+              Guardar
+            </button>
+            <button type="button" (click)="cancelEdit()" [disabled]="loading">
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</div>
