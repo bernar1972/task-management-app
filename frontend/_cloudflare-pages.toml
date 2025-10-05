@@ -1,0 +1,25 @@
+# Cloudflare Pages Configuration
+
+# Build settings
+[build]
+  command = "npm run build"
+  publish = "dist/task-app"
+
+# Environment variables for production
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
+
+# Redirects for Angular SPA routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Headers for security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
