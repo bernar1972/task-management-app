@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:netlify": "ng build --configuration=netlify",
+    "build:static": "ng build --output-mode=static",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:task-app": "node dist/task-app/server/server.mjs"
@@ -23,6 +24,10 @@
     ]
   },
   "private": true,
+  "engines": {
+    "node": ">=20.19.0",
+    "npm": ">=10.0.0"
+  },
   "dependencies": {
     "@angular/common": "^20.3.0",
     "@angular/compiler": "^20.3.0",

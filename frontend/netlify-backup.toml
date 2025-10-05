@@ -1,7 +1,10 @@
+# Netlify Configuration - Backup
+# If main netlify.toml fails, try this configuration
+
 [build]
   base = "frontend"
-  publish = "dist/task-app/browser"
-  command = "npm ci && npm run build:static"
+  publish = "dist/task-app"
+  command = "npm ci && npm run build -- --output-mode=static"
 
 [[redirects]]
   from = "/*"
