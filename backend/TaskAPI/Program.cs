@@ -20,7 +20,8 @@ builder.Services.AddCors(options =>
                 ? new[] { "http://localhost:4200" }
                 : new[] { 
                     "https://task-manager-app.pages.dev", // Cloudflare Pages
-                    "https://task-manager-app.netlify.app", // Netlify  
+                    "https://task-manager-app.netlify.app", // Netlify custom domain 
+                    "https://*.netlify.app", // Any Netlify subdomain
                     "http://localhost:4200" // Development
                 };
             
